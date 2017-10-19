@@ -5,12 +5,19 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "test"
+    "test": "mocha *.test.js"
   },
   "author": "Diana Baranova",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
-    "hbs": "^4.0.1"
+    "hbs": "^4.0.1",
+    "mongodb": "^2.2.33"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "mocha": "^4.0.1",
+    "rewire": "^2.5.2",
+    "supertest": "^3.0.0"
   }
 }
