@@ -4,15 +4,17 @@
   "description": "training node js",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node ./server/server.js",
     "test": "mocha *.test.js"
   },
   "author": "Diana Baranova",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "hbs": "^4.0.1",
-    "mongodb": "^2.2.33"
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.3"
   },
   "devDependencies": {
     "expect": "^21.2.1",
