@@ -5,6 +5,7 @@ const { ObjectID } = require('mongodb');
 const _ = require('lodash');
 
 const { mongoose } = require('./db/mongoose');
+const { authenticate } = require('./middleware/authenticate');
 const { Todo } = require('./models/todo');
 const { User } = require('./models/user');
 
@@ -101,6 +102,10 @@ app.post('/users', (req, res) => {
     }).catch((err) => {
         res.status(400).send(err);
     })
+});
+
+app.get('/users/me', authenticate, (req, res) => {
+    res.send(req.user);
 });
 
 app.listen(process.env.PORT, function () {
