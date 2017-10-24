@@ -91,6 +91,18 @@ app.patch('/todos/:id', (req, res) => {
     });
 });
 
+app.post('/users', (req, res) => {
+    const user = new User(_.pick(req.body, ['email', 'password']));
+
+    user.save().then(() => {
+        return user.generateAuthToken();
+    }).then((token) => {
+        res.header('x-auth', token).send(user);
+    }).catch((err) => {
+        res.status(400).send(err);
+    })
+});
+
 app.listen(process.env.PORT, function () {
     console.log(`Example app listening on port ${process.env.PORT}!`)
 });
