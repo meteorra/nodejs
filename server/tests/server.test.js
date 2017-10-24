@@ -280,7 +280,7 @@ describe('POST /users/login', () => {
             });
     });
 
-    it('should reject invalid login', () => {
+    it('should reject invalid login', (done) => {
         const email = users[1].email;
         const password = 'login123';
 
@@ -302,4 +302,25 @@ describe('POST /users/login', () => {
                 }).catch((e) => done(e))
             });
     })
+});
+
+describe('POST /users/me/token', () => {
+
+    it('should delete auth token', (done) => {
+
+        request(app)
+            .delete(`/users/me/token`)
+            .set('x-auth', users[0].tokens[0].token)
+            .expect(200)
+            .end((err, res) => {
+                if(err) {
+                    return done(err);
+                }
+
+                User.findById(users[0]._id).then((user) => {
+                    expect(user.tokens.length).toBe(0);
+                    done();
+                }).catch((e) => done(e))
+            });
+    });
 });
