@@ -6,4 +6,5 @@ dist
 *.ipr
 *.iml
 *.iws
+server/config/config.json
 
